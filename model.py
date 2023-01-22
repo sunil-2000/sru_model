@@ -5,6 +5,7 @@ from sru import SRU
 class RNN(nn.Module):
   def __init__(self, input_size, hidden_size, num_layers, num_classes, sru_on=True):
     super(RNN, self).__init__()
+    self.sru_on = sru_on
     self.num_layers = num_layers
     self.hidden_size = hidden_size
     if sru_on:
