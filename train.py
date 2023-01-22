@@ -8,7 +8,7 @@ class TrainWrapper:
   # data / model
   def __init__(self, sru=True):
     hidden_size = 12
-    hidden_layers = 5
+    hidden_layers = 2
     self.data = Data()
     self.model = RNN(self.data.embed_dim, hidden_size, hidden_layers, self.data.classes, sru)
 

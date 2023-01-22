@@ -9,7 +9,7 @@ class RNN(nn.Module):
     self.num_layers = num_layers
     self.hidden_size = hidden_size
     if sru_on:
-      self.rnn = SRU(input_size, hidden_size, num_layers = 2)
+      self.rnn = SRU(input_size, hidden_size, num_layers=num_layers)
     else:
       self.rnn = nn.RNN(input_size, hidden_size, num_layers, batch_first=True)
     self.fc = nn.Linear(hidden_size, num_classes)
