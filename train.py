@@ -7,7 +7,7 @@ from model import RNN
 class TrainWrapper:
   # data / model
   def __init__(self, sru=True):
-    hidden_size = 12
+    hidden_size = 20
     hidden_layers = 2
     self.data = Data()
     self.model = RNN(self.data.embed_dim, hidden_size, hidden_layers, self.data.classes, sru)
@@ -22,10 +22,9 @@ class TrainWrapper:
     # training loop
     for epoch in range(self.n_epochs):
       # iterate through dataset
-      for i in range(len(self.data.x_tr)):
-        x = self.data.to_tensor(self.data.x_tr[i]) # tensor
-        y = self.data.y_tr[i].view(1, self.data.y_tr.shape[-1])
-
+      for i in range(len(self.data.X)):
+        x = self.data.to_tensor(self.data.X[i]) # tensor
+        y = self.data.Y[i].view(1, self.data.Y.shape[-1])
         output = self.model(x)
         loss = self.criterion(output, y.float())
         self.optimizer.zero_grad()
@@ -48,6 +47,10 @@ class TrainWrapper:
 
 # trainer = TrainWrapper(sru=False)
 # model = trainer.train()
-# trainer.predict(model)
+# # preds = trainer.predict(model, trainer.data.x_tr)
+# # print(preds)
 
-    
+# # vals = ['6', '7', '8', '9']
+# print([f'x_{i}' for i in range(10)])
+# preds = trainer.predict(model, [f'x_{i}' for i in range(10)])
+# print(preds)
